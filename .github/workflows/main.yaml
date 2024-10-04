@@ -31,3 +31,19 @@ jobs:
           script: |
             cd Workshop
             git pull origin main
+  notify:
+      needs: test
+      if: failure()
+      runs-on: ubuntu-latest
+      steps:
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USER }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: Test job failed in ${{github.repository}}
+          body: The test job in the CI/CD pipeline for ${{github.repository}} failed or did not complete
+          to: jomanfail159@gmail.com
+          from: GitHub Actions
