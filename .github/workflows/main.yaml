@@ -20,6 +20,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: start-deploy
+    needs: test
     steps:
       - name: Connect with EC2 using ssh
         uses: appleboy/ssh-action@master
