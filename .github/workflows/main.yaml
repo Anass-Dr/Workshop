@@ -16,6 +16,6 @@ jobs:
         with:
           node-version: 20
       - name: Install Project Packages
-        run: npm ci
+      - run: npm ci
       - name: running tests
-        run: npm test
+      - run: npm test
